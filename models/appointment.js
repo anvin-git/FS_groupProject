@@ -12,7 +12,11 @@ const appointmentSchema = new mongoose.Schema({
   isTimeSlotAvailable:{ 
     type: Boolean, 
     default: true 
-  }
+  },
+  testtype:{ 
+    type: String, 
+    default: 'G2'
+  },
 });
 
 const Appointment = mongoose.model('Appointment', appointmentSchema);
