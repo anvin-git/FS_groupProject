@@ -66,6 +66,7 @@ app.post('/CreateUser',createUsers);
 //retrieving data from DB to show in G page
 app.post('/getUser', getUser);
 
+
 // Upadating details from G page to DB
 app.post('/updateUser', updateUser);
 
