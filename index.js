@@ -12,7 +12,7 @@ const createUser = require('./models/CreateUser')
 // adding mongooes connection
 const mongooes = require('mongoose')
 
-console.log("**********", connectFile);
+
 // use your connection string
 const conString = connectFile;
 try{

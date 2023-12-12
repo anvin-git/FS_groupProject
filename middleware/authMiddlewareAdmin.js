@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   
     
     if (userId && req.session.user.UserType === 'Admin') {
-        console.log(userId,req.session.user.UserType );
+        
         return next();
     } 
     else {
