@@ -1,7 +1,6 @@
 const createUser = require('../models/CreateUser');
 
 
-
 module.exports = async(req,res)=>{
   
     const userId = req.session.userId;
@@ -10,11 +9,11 @@ module.exports = async(req,res)=>{
         .findOne({ _id:userId })
             .then((users) => {
                 if (users.UserType != 'Driver') {
-                    res.render('login',{ users: [], message: 'g_reroute',errors :[] });
+                    res.render('login',{ users: [], message: 'g_reroute',errors :[], req: req });
                    
                 } else { 
-                    //console.log('successfully retrieved data',users)
-                    res.render('g_page', {users : [] , message: '',errors :[]});
+                    console.log('successfully retrieved data',users)
+                    res.render('g_page', {users : [] , message: '',errors :[], req: req});
                 }
             })
             .catch(err=>{
@@ -23,7 +22,7 @@ module.exports = async(req,res)=>{
                     const validationErrors = Object.keys(err.errors).map(key =>
                     err.errors[key].message);
                     req.session.validationErrors = validationErrors;
-                    res.render('g_page', {users : [],message:'', errors: validationErrors });
+                    res.render('g_page', {users : [],message:'', errors: validationErrors, req:req });
                 }
 
 
@@ -33,7 +32,7 @@ module.exports = async(req,res)=>{
             });   
     }
     else{
-        res.render('g_page', {users : [] , message: 'notLoggedin',errors :[]});
+        res.render('g_page', {users : [] , message: 'notLoggedin',errors :[], req:req});
     }
     
     

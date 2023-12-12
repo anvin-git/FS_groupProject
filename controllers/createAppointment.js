@@ -23,7 +23,7 @@ module.exports = (req,res)=>{
     .then(data=>{
         createAppointment.find({})
             .then(allAppointments => {
-            res.render('appointment',{ message: 'Inserted' , appointments: allAppointments}); 
+            res.render('appointment',{ message: 'Inserted' , appointments: allAppointments, req: req}); 
         })
         .catch(err=>{
   
@@ -34,6 +34,6 @@ module.exports = (req,res)=>{
     })
     .catch(err=>{
 
-        res.render('appointment', { message: 'NotInserted' , appointments: []});
+        res.render('appointment', { message: 'NotInserted' , appointments: [], req:req});
     })
 }

@@ -21,8 +21,7 @@ const userSchema = new mongoose.Schema({
     testtype:{ type: String, default: 'G2' },
     status: { type: Boolean, default: false },
     comments: { type: String, default: '' },
-  }
-  ,
+  },
   appointmentID: { type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }
 });
 

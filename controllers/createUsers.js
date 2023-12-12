@@ -44,24 +44,21 @@ module.exports = (req,res)=>{
     newUser
     .save(newUser)
     .then(data=>{
-         res.render('login', { users: [], message: 'Inserted',errors :[] });
+         res.render('login', { users: [], message: 'Inserted',errors :[] , req: req});
     })
     .catch(err=>{
-
+        console.log("*******", err);
         if (err.name === 'ValidationError') {
             const validationErrors = Object.keys(err.errors).map(key =>
             err.errors[key].message);
             req.session.validationErrors = validationErrors;
             res.render('login', {users : [],message:'', errors: validationErrors });
         }
-        res.render('login', { users: [], message: 'NotInserted',errors :[] });
+        res.render('login', { users: [], message: 'NotInserted',errors :[], req: req });
     })
 
     }
     else{
-        res.render('login', { users: [], message: 'dismatchedPasswords',errors :[] });
+        res.render('login', { users: [], message: 'dismatchedPasswords',errors :[], req: req });
     }
- 
- 
- 
 }

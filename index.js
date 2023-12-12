@@ -12,7 +12,6 @@ const createUser = require('./models/CreateUser')
 // adding mongooes connection
 const mongooes = require('mongoose')
 
-console.log("**********", connectFile);
 // use your connection string
 const conString = connectFile;
 try{
@@ -43,7 +42,8 @@ app.set('view engine','ejs');
 const dashboard = require('./controllers/dashboard');
 const g_page = require('./controllers/g_page');
 const g2_page = require('./controllers/g2_page');
-const login = require('./controllers/login')
+const login = require('./controllers/login');
+const logout = require('./controllers/logout');
 const createUsers = require('./controllers/createUsers');
 const getUser = require('./controllers/getUser');
 const updateUser = require('./controllers/updateUser');
@@ -59,6 +59,7 @@ app.get('/',dashboard);
 app.get('/g_test',authMiddleware,g_page);
 app.get('/g2_test',authMiddleware,g2_page);
 app.get('/login',login);
+app.get('/logout', logout);
 
 
 
