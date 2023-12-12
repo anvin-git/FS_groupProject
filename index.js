@@ -1,3 +1,4 @@
+const connectFile = require('./connection');
 const express = require('express');
 const ejs=require('ejs'); 
 const bodyParser = require('body-parser');
@@ -11,9 +12,9 @@ const createUser = require('./models/CreateUser')
 // adding mongooes connection
 const mongooes = require('mongoose')
 
-
+console.log("**********", connectFile);
 // use your connection string
-const conString ='mongodb+srv://anvin3105:bAeA0YsH7lZDC9kN@cluster0.zpkohkb.mongodb.net/'
+const conString = connectFile;
 try{
 const connection = mongooes.connect(conString)
 console.log('MongoDb Connected!!! Keep it up!!')
