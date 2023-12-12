@@ -17,7 +17,13 @@ const userSchema = new mongoose.Schema({
     year: { type: Number, default: 0 },
     platno: { type: String, default: 'default' },
   },
-  appointmentID: { type: mongoose.Schema.Types.ObjectId, ref: 'Appointment', default: 'default' }
+  exam_details:{
+    testtype:{ type: String, default: 'G2' },
+    status: { type: Boolean, default: false },
+    comments: { type: String, default: '' },
+  }
+  ,
+  appointmentID: { type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }
 });
 
 
