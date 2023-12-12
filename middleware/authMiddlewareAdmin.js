@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         return next();
     } 
     else {
-        res.render('login',{ users: [], message: 'g_reroute',errors :[] });
+        res.render('login',{ users: [], message: 'g_reroute',errors :[], req: req });
     }
 
 

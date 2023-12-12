@@ -7,10 +7,7 @@ module.exports = (req,res)=>{
     getAppointments.find({})
     .then(allAppointments => {
         // Render the appointment form view with existing appointments data
-
-      
-
-        res.render('appointment', {  message: '' , appointments:allAppointments });
+        res.render('appointment', {  message: '' , appointments:allAppointments, req: req });
       })
       .catch(err=>{
 

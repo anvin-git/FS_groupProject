@@ -9,23 +9,23 @@ module.exports = (req,res)=>{
         .findOne({ _id:userId })
             .then((users) => {
                 if (users.UserType != 'Driver') {
-                    res.render('login',{ users: [], message: 'g_reroute' });
+                    res.render('login',{ users: [], message: 'g_reroute' , req: req});
                 } else { 
                     //console.log(users.UserType,users)
 
                     bcrypt.compare('default', users.licenseNo, (error, same) => {
                         if (error) {
                             console.error(error);
-                            res.render('login', {users : [], message: 'No user Found' });
+                            res.render('login', {users : [], message: 'No user Found', req:req });
                         }
             
                         if (same) {
-                            res.render('g2_page', {users : [], message: '' ,errors :[]});
+                            res.render('g2_page', {users : [], message: '' ,errors :[], req:req});
                             
                         }
                         else{
                             // Successful login
-                            res.render('g2_page', {users : users ,message: '' ,errors :[]});
+                            res.render('g2_page', {users : users ,message: '' ,errors :[], req:req});
 
 
                            
@@ -45,7 +45,7 @@ module.exports = (req,res)=>{
                     const validationErrors = Object.keys(err.errors).map(key =>
                     err.errors[key].message);
                     req.session.validationErrors = validationErrors;
-                    res.render('g2_page', {users : [],message:'', errors: validationErrors });
+                    res.render('g2_page', {users : [],message:'', errors: validationErrors, req:req });
                 }
 
                 res
@@ -54,7 +54,7 @@ module.exports = (req,res)=>{
             });   
     }
     else{
-        res.render('g2_page', {users : [] , message: 'notLoggedin',errors :[]});
+        res.render('g2_page', {users : [] , message: 'notLoggedin',errors :[], req:req});
     }
     
     
