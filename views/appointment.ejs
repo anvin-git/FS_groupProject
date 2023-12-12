@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Canada drives - G test</title>
+        <title>Canada drives - Admin</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>Appointment</h1>
-                            <span class="subheading">Take an Appointment for the Drivers License test here</span>
+                            <span class="subheading">Allote appointments for the Drivers License test here</span>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                                     <div class="col-sm-8">
 
                                         <select id="testType" name="testType"  class="form-control" required>
-                                            <option value="" disabled0 selected>Select a test type</option>
+                                            <option value="" disabled selected>Select a test type</option>
                                             <option value="G2" >G2</option>
                                             <option value="G">G</option>
                                             
@@ -156,7 +156,7 @@
                     dataType: 'json',
                     success: function(data) {
                         // Display available times
-                        ;
+                        
                         displayAvailableTimes(data);
                     },
                     error: function(error) {

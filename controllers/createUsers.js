@@ -22,19 +22,11 @@ module.exports = (req,res)=>{
     const newUser = new createUser({
         
         // Default values for other fields
-        firstname: 'default',
-        lastname: 'default',
-        licenseNo: 'default',
-        Age: 0,
+        
         Username: req.body.signupUsername,
         Password: req.body.signupPassword,
         UserType: req.body.userType,
-        car_details: {
-        make: 'default',
-        model: 'default',
-        year: 0,
-        platno: 'default',
-        }
+      
     });
 
     
