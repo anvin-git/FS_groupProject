@@ -13,6 +13,8 @@ module.exports = (req,res)=>{
         
         date:req.body.date,
         time:req.body.time ,
+        testtype:req.body.testType,
+
     });
 
     
