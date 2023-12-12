@@ -54,6 +54,8 @@ const createAppointment = require('./controllers/createAppointment');
 const timeSlotFinder = require('./controllers/timeSlotFinder');
 const timeSlotFinderAdmin = require('./controllers/timeSlotFinderAdmin');
 const makeAppointment = require('./controllers/makeAppointmnet');
+const driversList = require('./controllers/driversList');
+const getDrivers = require('./controllers/getDrivers');
 
 app.get('/',dashboard); 
 app.get('/g_test',authMiddleware,g_page);
@@ -95,6 +97,10 @@ app.post('/makeAppointment', makeAppointment);
 
 app.get('/timeslots', timeSlotFinder);
 
+
+app.get('/driverslist',driversList);
+
+app.get('/getDrivers',getDrivers);
 
 app.get('/timeslotsAdmin', timeSlotFinderAdmin);
 
