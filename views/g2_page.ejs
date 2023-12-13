@@ -136,42 +136,48 @@
                         <br>
                         </form>
                         <% if (!users.appointmentID || (users.exam_details.testtype == "G2" && users.exam_details.status == false)) { %>
-                            <h4><% %></h4>
-                        <form id="bookAppointment" method="post" action="/makeAppointment">
-                        <br>
-                        <fieldset >
-                            <legend>Book an appointment</legend>
-                            <div class="form-group row">
-                                <label for="date" class="col-sm-4 col-form-label">Date : </label>
-                                <div class="col-sm-8">
+                            <h4>Previous exam result</h4>
+                            <h4>Result: Fail </h4>
+                            <h4>Comments: <%= users.exam_details.comments %></h4>
+                            <form id="bookAppointment" method="post" action="/makeAppointment">
+                            <br>
+                                <fieldset >
+                                    <legend>Book an appointment</legend>
+                                    <div class="form-group row">
+                                        <label for="date" class="col-sm-4 col-form-label">Date : </label>
+                                        <div class="col-sm-8">
 
-                                    <input type="date" class="form-control" name="date" id="date"  >
-                                    
-                                </div>
-                            </div>  
-                            <input type="text" id="loadedTimes" value=""  hidden>
-                            <div class="form-group row">
-                                <label for="time" class="col-sm-4 col-form-label">Time : </label>
-                                <div class="col-sm-8">
+                                            <input type="date" class="form-control" name="date" id="date"  >
+                                            
+                                        </div>
+                                    </div>  
+                                    <input type="text" id="loadedTimes" value=""  hidden>
+                                    <div class="form-group row">
+                                        <label for="time" class="col-sm-4 col-form-label">Time : </label>
+                                        <div class="col-sm-8">
 
-                                    <select id="time" name="time"  class="form-control" >
-                                        
-                                        <option value="" disabled selected>Select a time</option>
-                                        
-                                      </select>
-                                    
-                                </div>
-                            </div>  
-                        </fieldset>
-                        <br><div class="form-group row">
-                            <label  class="col-sm-4 col-form-label"></label>
-                            <div class="col-sm-8">  
-                                <button type="submit" class="btn btn-primary">Book Appointment</button> 
-                            </div>
-                        </div><br>
-                      </form>
-                    <% } else { %>
+                                            <select id="time" name="time"  class="form-control" >
+                                                
+                                                <option value="" disabled selected>Select a time</option>
+                                                
+                                            </select>
+                                            
+                                        </div>
+                                    </div>  
+                                </fieldset>
+                                <br><div class="form-group row">
+                                    <label  class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">  
+                                        <button type="submit" class="btn btn-primary">Book Appointment</button> 
+                                    </div>
+                                </div><br>
+                            </form>
+                    <% } if (users.exam_details.testtype == "G") {%>
+                        <h3> You have already passed G2 !</h3>
+                    <% } %>
+                    <% } if (users.exam_details.testtype == "G") {%>
                         <h3> G2 Test Appointment Booked</h3>
+                    <% %>
                     <% } %>
                       <%
                             }
