@@ -4,7 +4,7 @@ module.exports = (req,res)=>{
 
     const testType = req.query.testtype;
    
-    getUser.find({'exam_details.testtype': testType})
+    getUser.find({'exam_details.testtype': testType,UserType:"Driver"})
     .then(users_data => {
         res.json(users_data);
        

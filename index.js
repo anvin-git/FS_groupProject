@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const authMiddleware = require('./middleware/authMiddleware');
 const authMiddlewareAdmin = require('./middleware/authMiddlewareAdmin');
+const authMiddlewareExaminer =require('./middleware/authMiddlewareExaminer');
 //Requiring Model CreateUser
 const createUser = require('./models/CreateUser')
 
@@ -56,6 +57,8 @@ const timeSlotFinderAdmin = require('./controllers/timeSlotFinderAdmin');
 const makeAppointment = require('./controllers/makeAppointmnet');
 const driversList = require('./controllers/driversList');
 const getDrivers = require('./controllers/getDrivers');
+const examinerlist = require('./controllers/examinerList');
+const updateTestStatus =require('./controllers/updateTestStatus');
 
 app.get('/',dashboard); 
 app.get('/g_test',authMiddleware,g_page);
@@ -95,15 +98,24 @@ app.post('/createAppointment', createAppointment);
 //make an appointment.
 app.post('/makeAppointment', makeAppointment);
 
-
+// to find available time slots
 app.get('/timeslots', timeSlotFinder);
+app.get('/timeslotsAdmin', timeSlotFinderAdmin);
 
+//to load diverslist for admin
+app.get('/driverlist',authMiddlewareAdmin,driversList);
 
-app.get('/driverslist',driversList);
-
+//to get drivers list 
 app.get('/getDrivers',getDrivers);
 
-app.get('/timeslotsAdmin', timeSlotFinderAdmin);
+// to load driver listing for examiner
+app.get('/examinerlist',authMiddlewareExaminer,examinerlist);
+
+//to update test staus and comments
+app.post('/updateTestStatus',updateTestStatus);
+
+
+
 
 const port = 4000;
 app.listen(port,(req,res)=>{
