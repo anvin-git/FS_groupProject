@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     .then((data) => {
         
       console.log("Data Updated");
-      res.render('g2_page', { users: [], message: 'Inserted', errors: [], req: req });
+      res.render('g2_page', { users: data, message: 'Inserted', errors: [], req: req });
     })
     .catch((appointmentErr) => {
       console.error("Error updating appointment:", appointmentErr);

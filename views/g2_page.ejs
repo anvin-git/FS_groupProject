@@ -50,20 +50,10 @@
                         <% } %>
                         
                         
-                        <%
-
-
-                      
-                            if (message =="Inserted") { 
-                            
-                            %>
-                                    <h1>Deatils Inserted</h1>
+                        <% if (message =="Inserted") {  %>
+                            <h1>Details Inserted</h1>
                              
-                                <% 
-                            }
-                                
-                            else  if (message !="notLoggedin") {
-                        %>
+                        <% } else  if (message !="notLoggedin") { %>
                         
 
                     <form id="createUserform" method="post" action="/updateDriver">
@@ -135,10 +125,16 @@
                         </div>
                         <br>
                         </form>
-                        <% if (!users.appointmentID || (users.exam_details.testtype == "G2" && users.exam_details.status == false)) { %>
-                            <h4>Previous exam result</h4>
-                            <h4>Result: Fail </h4>
-                            <h4>Comments: <%= users.exam_details.comments %></h4>
+                        
+                        <% if (users.appointmentID && users.exam_details.testtype == "") { %>
+                            <h4>You have booked appointment for "date"</h4>
+                        <% } else if (!users.appointmentID || (users.exam_details.testtype == "G2" && users.exam_details.status == false)) { %>
+                           
+                            <% if (users.appointmentID && users.exam_details.testtype == "G2" && users.exam_details.status == false) { %>
+                                <h4>Previous exam result</h4>
+                                <h4>Result: Fail </h4>
+                                <h4>Comments: <%= users.exam_details.comments %></h4>
+                            <% } %>
                             <form id="bookAppointment" method="post" action="/makeAppointment">
                             <br>
                                 <fieldset >
@@ -172,22 +168,14 @@
                                     </div>
                                 </div><br>
                             </form>
-                    <% } if (users.exam_details.testtype == "G") {%>
-                        <h3> You have already passed G2 !</h3>
+                        <% } else if (users.exam_details.testtype == "G" || (users.exam_details.testtype == "G2" && users.exam_details.status == true)) {%>
+                            <h3> You have already passed G2 !</h3>
+                        <% } else { %>
+                            <h3> You have already passed G2 !</h3>
+                        <% } %> 
+                    <% } else { %>
+                        <h1>Please Log In</h1>
                     <% } %>
-                    <% } if (users.exam_details.testtype == "G") {%>
-                        <h3> G2 Test Appointment Booked</h3>
-                    <% %>
-                    <% } %>
-                      <%
-                            }
-                            else{
-                                %>
-                                    <h1>Please Log In</h1>
-                            
-                                <% 
-                            }
-                      %>
                 </div>
             </div>
         </div>

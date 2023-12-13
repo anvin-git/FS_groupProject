@@ -11,7 +11,8 @@ module.exports = async(req,res)=>{
                 if (users.UserType != 'Driver') {
                     res.render('login',{ users: [], message: 'g_reroute',errors :[], req: req });
                 } else {    
-                    console.log('successfully retrieved data',users)
+                    console.log('successfully retrieved data',users);
+                    res.render('g_page', {users , message: '',errors :[], req});
                 }
             }).catch(err=>{
 
@@ -21,8 +22,6 @@ module.exports = async(req,res)=>{
                     req.session.validationErrors = validationErrors;
                     res.render('g_page', {users : [],message:'', errors: validationErrors });
                 }
-
-
                 res
                 .status(500)
                 .send({message: err.message || "Can not find the user!"})

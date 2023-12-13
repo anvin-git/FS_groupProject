@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     platno: { type: String, default: '' },
   },
   exam_details:{
-    testtype:{ type: String, default: 'G2' },
+    testtype:{ type: String, default: '' },
     status: { type: Boolean, default: false },
     comments: { type: String, default: '' },
   },
