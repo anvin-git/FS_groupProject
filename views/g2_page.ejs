@@ -135,6 +135,8 @@
                         </div>
                         <br>
                         </form>
+                        <% if (!users.appointmentID || (users.exam_details.testtype == "G2" && users.exam_details.status == false)) { %>
+                            <h4><% %></h4>
                         <form id="bookAppointment" method="post" action="/makeAppointment">
                         <br>
                         <fieldset >
@@ -168,7 +170,9 @@
                             </div>
                         </div><br>
                       </form>
-
+                    <% } else { %>
+                        <h3> G2 Test Appointment Booked</h3>
+                    <% } %>
                       <%
                             }
                             else{
@@ -202,7 +206,7 @@
                     $.ajax({
                     url: '/timeslots',
                     method: 'GET',
-                    data: { date: selectedDate },
+                    data: { date: selectedDate , testtype: "G2"},
                     dataType: 'json',
                     success: function(data) {
                         // Display available times
