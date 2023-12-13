@@ -13,24 +13,25 @@ module.exports = (req,res)=>{
     .findOne({ Username:Username })
         .then((users) => {
             if (!users) {
-                res.render('login', {users : [], message: 'No user Found' ,errors :[]});
+                res.render('login', {users : [], message: 'No user Found' ,errors :[], req:req});
             } else { 
                  // Compare the provided password with the stored hashed password
                 bcrypt.compare(Password, users.Password, (error, same) => {
                     if (error) {
                         console.error(error);
-                        res.render('login', {users : [], message: 'No user Found',errors :[] });
+                        res.render('login', {users : [], message: 'No user Found',errors :[], req:req });
                     }
         
                     if (!same) {
-                        res.render('login', {users : [], message: 'Invalid password',errors :[] });
+                        res.render('login', {users : [], message: 'Invalid password',errors :[] , req:req});
                         
                     }
                     else{
                         // Successful login
                         req.session.userId = users._id;
                         req.session.user=users;
-                        res.render('login', {users, message: 'Success' ,errors :[]});
+                        
+                        res.redirect('/');
                     }
         
                     
@@ -44,7 +45,7 @@ module.exports = (req,res)=>{
                 const validationErrors = Object.keys(err.errors).map(key =>
                 err.errors[key].message);
                 req.session.validationErrors = validationErrors;
-                res.render('login', {users : [],message:'', errors: validationErrors });
+                res.render('login', {users : [],message:'', errors: validationErrors , req:req});
             }
 
             res

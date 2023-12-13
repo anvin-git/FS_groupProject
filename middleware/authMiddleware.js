@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
   
 
     const userId = req.session.userId;
-  
+    // res.locals.userId = userId;
     console.log(userId && req.session.UserType === 'Driver');
     console.log(userId,req.session.user);
 
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
         return next();
     }
     else {
-        res.render('login',{ users: [], message: 'g_reroute',errors :[] });
+        res.render('login',{ users: [], message: 'g_reroute',errors :[], req:req });
     }
 
    
