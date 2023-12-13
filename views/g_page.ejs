@@ -118,10 +118,16 @@
                             </fieldset>
                             <br>
                         </form>
-                        <% if (!users.appointmentID || (users.exam_details.test_type == "G" && users.exam_details.status == false)) { %>
-                        <form id="bookAppointment" method="post" action="/makeAppointment">
+                        <% if (users.exam_details.testtype == "" || (users.exam_details && users.exam_details.testtype == "G2" && users.exam_details.status == false)) { %>
+                            <h3> You cant book G without G2</h3>
+                        <% } else if (!users.appointmentID || (users.exam_details.test_type == "G" && users.exam_details.status == false)) { %>
+                            <form id="bookAppointment" method="post" action="/makeAppointment">
                             <br>
-                            
+                            <% if (users.appointmentID && users.exam_details.testtype == "G" && users.exam_details.status == false) { %>
+                                <h4>Previous exam result</h4>
+                                <h4>Result: Fail </h4>
+                                <h4>Comments: <%= users.exam_details.comments %></h4>
+                            <% } %>
                             <fieldset >
                                 <legend>Book an appointment</legend>
                                     <div class="form-group row">
@@ -156,8 +162,6 @@
                             </div>
                             <br> 
                         </form>
-                        <% } else if (users.exam_details && users.exam_details.testtype == "G2" && users.exam_details.status == false) { %>
-                            <h3> You cant book G without G2</h3>
                         <% } else { %>
                             <h3> G Test Appointment Booked</h3>
                         <% } %>

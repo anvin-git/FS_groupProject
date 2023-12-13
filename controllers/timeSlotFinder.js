@@ -1,5 +1,6 @@
 
 const getAppointments = require('../models/appointment');
+const userModel = require('../models/CreateUser');
 
 module.exports = (req,res)=>{
     const selectedDate = req.query.date;
