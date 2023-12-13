@@ -2,7 +2,7 @@
 const getAppointments = require('../models/appointment');
 const userModel = require('../models/CreateUser');
 
-module.exports = async(req,res)=>{
+module.exports = (req,res)=>{
     const selectedDate = req.query.date;
     console.log("***Date***", selectedDate)
     getAppointments.find({date: selectedDate, isTimeSlotAvailable: true })
