@@ -202,7 +202,7 @@
                     $.ajax({
                     url: '/timeslots',
                     method: 'GET',
-                    data: { date: selectedDate },
+                    data: { date: selectedDate , testtype: "G2"},
                     dataType: 'json',
                     success: function(data) {
                         // Display available times

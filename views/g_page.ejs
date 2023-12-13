@@ -42,192 +42,125 @@
                     <% if(errors != null && errors.length > 0){ %>
                         <ul class="list-group"></ul>
                         <% for (var i = 0; i < errors.length; i++) { %>
-                        <li class="list-group-item list-group-item-danger"><%=
-                        errors[i] %></li>
+                            <li class="list-group-item list-group-item-danger"><%= errors[i] %></li>
                         <% } %>
                         </ul>
-                        <% } %>
-                    <!-- Post preview-->
-                    <form id="getUserform" method="post" action="/getUser">
-                        <fieldset >
-                            <%
+                    <% } %>
+                                         
+                        <form id="displayUserform" method="" action="">
+                            <fieldset >
+                                <legend>Personal Information</legend>
+                                <input type="text" class="form-control" name="inputID" value="<%= users._id %>" id="inputID" readonly hidden>
+                                <div class="form-group row">
+                                    <label for="inputFirstName" class="col-sm-4 col-form-label">First Name : </label>
+                                    <div class="col-sm-8">
 
-                            
-                      
-                            if (message !="notLoggedin") { 
-                            
-                            %>
-                           
-                           
-                            <div class="form-group row">
-                                <label for="inputLicense" class="col-sm-4 col-form-label">License Number</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="inputLicense" id="inputLicense" placeholder="License Number">
+                                        <input type="text" class="form-control" name="inputFirstName" value="<%= users.firstname %>" id="inputFirstName" disabled readonly>
+                                        
+                                    </div>
+                                </div>  
+                                <div class="form-group row">
+                                    <label for="inputLastName" class="col-sm-4 col-form-label">Last Name : </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="inputLastName"value="<%= users.lastname %>" id="inputLastName" disabled readonly>
+                                        
+                                    </div>
+                                </div>   
+                                <div class="form-group row">
+                                    <label for="inputLicense" class="col-sm-4 col-form-label">License Number : </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="inputLicense" value="<%= users.licenseNo %>" id="inputLicense"disabled readonly>
+                                        
+                                    </div>
                                 </div>
-                            </div>
-                           
-                            
-                        </fieldset>
-                        <br>
-                        <div class="form-group row">
-                            <label  class="col-sm-4 col-form-label"></label>
-                            <div class="col-sm-8">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                            <%
-
-                            }
-                            else{
-                                %>
-                                    <h1>Please Log In</h1>
-                             
-                                <% 
-                            }
-                            if (users !="") { 
-                            
-                            %>
-                                    <h1>Here are the Details</h1>
-                             
-                                <% 
-                            }
+                                <div class="form-group row">
+                                    <label for="inputAge" class="col-sm-4 col-form-label">Age : </label>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" name="inputAge" value="<%= users.Age %>" id="inputAge" disabled readonly>
+                                        
+                                    </div>
+                                </div>
                                 
-                        
-                        %>
-                        </div>
-                        <br>
-                      </form>
-                      <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-                      <%
+                                
+                            </fieldset>
+                            <br><br>
+                            <fieldset >
+                                <legend>Car Information</legend>
+    
+                                <div class="form-group row">
+                                    <label for="inputMake" class="col-sm-4 col-form-label">Make : </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  name="inputMake" value="<%= users.car_details.make %>" id="inputMake" placeholder="Make" disabled readonly>
+                                        
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <label for="inputModel" class="col-sm-4 col-form-label">Model : </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="inputModel" value="<%= users.car_details.model %>" id="inputModel" placeholder="Model" disabled readonly>
+                                        
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <label for="inputYear" class="col-sm-4 col-form-label">Year : </label>
+                                    <div class="col-sm-8">
+                                        <input type="number" class="form-control" name="inputYear" value="<%= users.car_details.year %>" id="inputYear" placeholder="Year" disabled readonly>
+                                        
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <label for="inputPlateNumber" class="col-sm-4 col-form-label">Plate Number :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="inputPlateNumber" value="<%= users.car_details.platno %>" id="inputPlateNumber" placeholder="Plate Number" disabled readonly>
+                                        
+                                    </div>
+                                </div> 
+                            </fieldset>
+                            <br>
+                        </form>
+                        <% if (!users.appointmentID || (users.exam_details.test_type == "G" && users.exam_details.status == false)) { %>
+                        <form id="bookAppointment" method="post" action="/makeAppointment">
+                            <br>
+                            
+                            <fieldset >
+                                <legend>Book an appointment</legend>
+                                    <div class="form-group row">
+                                        <label for="date" class="col-sm-4 col-form-label">Date : </label>
+                                        <div class="col-sm-8">
 
-                      
-                      if (users !="") {  %>
-                                                  
-                                        <form id="displayUserform" method="post" action="/updateUser">
-                                            <fieldset >
-                                                <legend>Personal Information</legend>
-                                                <input type="text" class="form-control" name="inputID" value="<%= users._id %>" id="inputID" readonly hidden>
-                                                <div class="form-group row">
-                                                    <label for="inputFirstName" class="col-sm-4 col-form-label">First Name : </label>
-                                                    <div class="col-sm-8">
+                                            <input type="date" class="form-control" name="date" id="date"  >
+                                            
+                                        </div>
+                                    </div>  
+                                    <input type="text" id="loadedTimes" value=""  hidden>
+                                    <div class="form-group row">
+                                        <label for="time" class="col-sm-4 col-form-label">Time : </label>
+                                        <div class="col-sm-8">
 
-                                                        <input type="text" class="form-control" name="inputFirstName" value="<%= users.firstname %>" id="inputFirstName" readonly>
-                                                        
-                                                    </div>
-                                                </div>  
-                                                <div class="form-group row">
-                                                    <label for="inputLastName" class="col-sm-4 col-form-label">Last Name : </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="inputLastName"value="<%= users.lastname %>" id="inputLastName" readonly>
-                                                        
-                                                    </div>
-                                                </div>   
-                                                <div class="form-group row">
-                                                    <label for="inputLicense" class="col-sm-4 col-form-label">License Number : </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="inputLicense" value="<%= users.licenseNo %>" id="inputLicense"readonly>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="inputAge" class="col-sm-4 col-form-label">Age : </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="number" class="form-control" name="inputAge" value="<%= users.Age %>" id="inputAge" readonly>
-                                                        
-                                                    </div>
-                                                </div>
+                                            <select id="time" name="time"  class="form-control" >
+                                                <option value="" disabled selected>Select a time</option>
                                                 
-                                                
-                                            </fieldset>
-                                            <br><br>
-                                            <fieldset >
-                                                <legend>Car Information</legend>
-                    
-                                                <div class="form-group row">
-                                                    <label for="inputMake" class="col-sm-4 col-form-label">Make : </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control"  name="inputMake" value="<%= users.car_details.make %>" id="inputMake" placeholder="Make" required>
-                                                       
-                                                    </div>
-                                                </div> 
-                                                <div class="form-group row">
-                                                    <label for="inputModel" class="col-sm-4 col-form-label">Model : </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="inputModel" value="<%= users.car_details.model %>" id="inputModel" placeholder="Model" required>
-                                                        
-                                                    </div>
-                                                </div> 
-                                                <div class="form-group row">
-                                                    <label for="inputYear" class="col-sm-4 col-form-label">Year : </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="number" class="form-control" name="inputYear" value="<%= users.car_details.year %>" id="inputYear" placeholder="Year" required>
-                                                     
-                                                    </div>
-                                                </div> 
-                                                <div class="form-group row">
-                                                    <label for="inputPlateNumber" class="col-sm-4 col-form-label">Plate Number :</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" name="inputPlateNumber" value="<%= users.car_details.platno %>" id="inputPlateNumber" placeholder="Plate Number" required>
-                                                        
-                                                    </div>
-                                                </div> 
-                                            </fieldset>
-                                            <br>
-                                            <div class="form-group row">
-                                                <label  class="col-sm-4 col-form-label"></label>
-                                                <div class="col-sm-8">
-                                                    <button type="submit" class="btn btn-primary">Update Details</button>
-                                                </div>
-                                            </div>
-                                            <br><br>
-                                          </form>
-                    
-                    
-                                  
-                                
-                                
-                                <% 
-                                }
-                                    
-                            if(message =="No user Found") {
-                                %>
-                                    <h1>No User Found</h1>
-                                <%
-                            } 
-                            
-                            if(message =="Updated") {
-                            %>
-                                <h1>Deatils Updated</h1>
-                            <%
-                        } %>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="test_type" value="G">
+                            </fieldset>
+                            <br>
+                            <div class="form-group row">
+                                <label  class="col-sm-4 col-form-label"></label>
+                                <div class="col-sm-8">  
+                                    <button type="submit" class="btn btn-primary">Book Appointment</button> 
+                                </div>
+
+                            </div>
+                            <br> 
+                        </form>
+                        <% } else if (users.exam_details && users.exam_details.testtype == "G2" && users.exam_details.status == false) { %>
+                            <h3> You cant book G without G2</h3>
+                        <% } else { %>
+                            <h3> G Test Appointment Booked</h3>
+                        <% } %>
                 </div>
             </div>
         </div>
@@ -241,5 +174,47 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#date').on('change', function () {
+                    const selectedDate = $(this).val();
+                    // Make an AJAX request to fetch available times
+                    $.ajax({
+                    url: '/timeslots',
+                    method: 'GET',
+                    data: { date: selectedDate, testtype: "G" },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Display available times
+                        displayAvailableTimes(data);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching available times:', error);
+                    }
+                    });
+
+                    function displayAvailableTimes(appointments) {
+                        // Clear previous times
+                        $('#time').empty();
+                        
+                        if(appointments != ""){
+                            $('#time').append('<option value="" disabled selected>Select a time</option>');
+                            
+                            appointments.forEach(appointment => {
+                                console.log(appointment);
+                                $('#time').append(`<option value="${appointment._id}">${appointment.time}</option>`);
+                            });
+                        }
+                        else{
+                            $('#time').append('<option value="" disabled selected>No Slots Available</option>');
+                        }
+
+                        
+                    }
+
+                });
+            });
+        </script>
     </body>
 </html>
