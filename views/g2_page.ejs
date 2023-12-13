@@ -135,6 +135,7 @@
                         </div>
                         <br>
                         </form>
+                        <% if (!users.appointmentID || (users.exam_details.test_type == "G2" && users.exam_details.status == false)) { %>
                         <form id="bookAppointment" method="post" action="/makeAppointment">
                         <br>
                         <fieldset >
@@ -168,7 +169,9 @@
                             </div>
                         </div><br>
                       </form>
-
+                        <% } else { %>
+                            <h3> G2 Test Appointment Booked</h3>
+                        <% } %>
                       <%
                             }
                             else{
