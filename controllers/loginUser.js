@@ -30,7 +30,7 @@ module.exports = (req,res)=>{
                         // Successful login
                         req.session.userId = users._id;
                         req.session.user=users;
-                        console.log("9999999999999999999999999999999999999999", users)
+                        
                         res.redirect('/');
                     }
         

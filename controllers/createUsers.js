@@ -39,7 +39,7 @@ module.exports = (req,res)=>{
          res.render('login', { users: [], message: 'Inserted',errors :[] , req: req});
     })
     .catch(err=>{
-        console.log("*******", err);
+        
         if (err.name === 'ValidationError') {
             const validationErrors = Object.keys(err.errors).map(key =>
             err.errors[key].message);
