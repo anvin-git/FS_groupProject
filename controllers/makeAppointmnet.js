@@ -6,13 +6,12 @@ module.exports = async (req, res) => {
   const userId = req.session.userId;
   const appointmentID = req.body.time;
   // Hash the licenseNo before updating it
-  
+  console.log("+++++++++++++++++++++++++++", req.body)
   createUser
     .findByIdAndUpdate(
       userId,
       {
         appointmentID: appointmentID
-        
       },
       { new: true } // Use the { new: true } option to return the updated document
     )
@@ -22,7 +21,7 @@ module.exports = async (req, res) => {
           { new: true }
         ).then((updatedAppointment) => {  
           console.log("Data Updated");
-          res.render('g2_page', { users: [], message: 'Inserted', errors: [] });
+          res.render('g2_page', { users: [], message: 'Inserted', errors: [] , req});
         })
         .catch((appointmentErr) => {
           console.error("Error updating appointment:", appointmentErr);

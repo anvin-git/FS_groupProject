@@ -12,7 +12,7 @@ module.exports = (req,res)=>{
                     res.render('login',{ users: [], message: 'g_reroute' , req: req});
                 } else { 
                     //console.log(users.UserType,users)
-
+                    
                     bcrypt.compare('default', users.licenseNo, (error, same) => {
                         if (error) {
                             console.error(error);

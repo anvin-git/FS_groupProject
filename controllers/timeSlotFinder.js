@@ -3,17 +3,17 @@ const getAppointments = require('../models/appointment');
 
 module.exports = (req,res)=>{
     const selectedDate = req.query.date;
+    console.log("***Date***", selectedDate)
     getAppointments.find({date: selectedDate, isTimeSlotAvailable: true })
     .then(availableTimes => {
-         
+        console.log("Available times ====>", availableTimes)
         res.json(availableTimes);
-       
-      })
+    })
       .catch(err=>{
 
-        res
-        .status(500)
-        .send({message: err.message || "Can not find the appointments   !"})
+              res
+              .status(500)
+              .send({message: err.message || "Can not find the appointments   !"})
     }); 
 
 }
