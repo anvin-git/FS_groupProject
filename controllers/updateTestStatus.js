@@ -5,11 +5,10 @@ const bcrypt = require('bcrypt');
 module.exports = async (req, res) => {
   const userId = req.body.user_id;
 
-  const testtype = req.body.testType;
-  const status = req.body.testStatus;
+  const testtype = req.body.testtype;
+  const status = req.body.status;
   const comments = req.body.comments; 
-  console.log(testtype,status,comments);
-  
+  console.log(res);
   // Hash the licenseNo before updating it
   
   createUser
@@ -26,8 +25,6 @@ module.exports = async (req, res) => {
       { new: true } // Use the { new: true } option to return the updated document
     )
     .then((data) => {
-        
-      console.log("Data Updated");
       res.render('examiner_list', { users: [], message: 'Inserted', errors: [], req: req });
     })
     .catch((appointmentErr) => {

@@ -61,7 +61,7 @@
                         </div>
                         <div class="card-body">
                             
-                            <form method="POST" action="/updateTestStatus">
+                            <form method="POST" >
 
                                 <div class="form-group row">
                                     <label for="testType" class="col-sm-4 col-form-label">Test Type : </label>
@@ -165,13 +165,13 @@
                                 let status = "";
 
                                 if(!user_data.exam_details.status){
-                                    status = `<select class="form-select" id="testStatus" name="testStatus">
+                                    status = `<select class="form-select" id="testStatus_${user_data._id}" name="testStatus">
                                                     <option value="true">Passed</option>
                                                     <option value="false" selected>Failed</option>
                                                 </select>`;
                                 }
                                 else{
-                                    status = `<select class="form-select" id="testStatus" name="testStatus">
+                                    status = `<select class="form-select" id="testStatus_${user_data._id}" name="testStatus">
                                                     <option value="true" selected>Passed</option>
                                                     <option value="false" >Failed</option>
                                                 </select>`;
@@ -182,15 +182,12 @@
                                             <td>${user_data.firstname} ${user_data.lastname}</td>
                                             <td>${user_data.licenseNo}</td>
                                             <td>
-                                                <div class="form-group" style="display:none">                                    
-                                                    <input type="text" class="form-control" id="user_id" name="user_id" value="${user_data._id}" >
-                                                </div>
                                                 <div class="form-group">                                    
-                                                    <input type="text" class="form-control" id="comments" name="comments" value="${user_data.exam_details.comments}" required>
+                                                    <input type="text" class="form-control" id="comments_${user_data._id}" name="comments" value="${user_data.exam_details.comments}" required>
                                                 </div>
                                             </td>
                                             <td>${status}</td>
-                                            <td><button type="submit" class="btn btn-success btn-sm">Update</button</td>
+                                            <td><button type="button" onclick="handleButtonClick('${user_data._id}')" class="btn btn-success btn-sm">Update</button</td>
                                           </tr>
                                           
                                         </tbody>`);
@@ -205,8 +202,32 @@
 
 
                 });
+
+                
               
             });
+
+            function handleButtonClick(id){
+                    
+                    const comments = $(`#comments_${id}`).val();
+                    const status = $(`#testStatus_${id}`).val();
+                    const testType = $('#testType').val();
+                    
+
+                    $.ajax({
+                    url: '/updateTestStatus',
+                    method: 'POST',
+                    data: { user_id: id,
+                        testtype: testType ,
+                        status: status,
+                        comments:comments
+                    },
+                    dataType: 'json',
+                    });
+
+            
+                    
+            }
 
 
            

@@ -118,9 +118,9 @@
                             </fieldset>
                             <br>
                         </form>
-                        <% if (users.exam_details.testtype == "" || (users.exam_details && users.exam_details.testtype == "G2" && users.exam_details.status == false)) { %>
+                        <%  if (users.exam_details.testtype == "" || (users.exam_details && users.exam_details.testtype == "G2" && users.exam_details.status == false )) { %>
                             <h3> You cant book G without G2</h3>
-                        <% } else if (!users.appointmentID || (users.exam_details.test_type == "G" && users.exam_details.status == false)) { %>
+                        <% } else if (!users.appointmentID || (users.exam_details.test_type == "G" && users.exam_details.status == false) ) { %>
                             <form id="bookAppointment" method="post" action="/makeAppointment">
                             <br>
                             <% if (users.appointmentID && users.exam_details.testtype == "G" && users.exam_details.status == false) { %>
@@ -133,7 +133,7 @@
                                     <div class="form-group row">
                                         <label for="date" class="col-sm-4 col-form-label">Date : </label>
                                         <div class="col-sm-8">
-
+                                            <input type="text" class="form-control" name="testtype" id="testtype" value="G" hidden>
                                             <input type="date" class="form-control" name="date" id="date"  >
                                             
                                         </div>

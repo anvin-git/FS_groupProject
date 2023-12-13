@@ -5,13 +5,20 @@ const bcrypt = require('bcrypt');
 module.exports = async (req, res) => {
   const userId = req.session.userId;
   const appointmentID = req.body.time;
+  const testtype = req.body.testtype;
   // Hash the licenseNo before updating it
-  console.log("+++++++++++++++++++++++++++", req.body)
+
   createUser
     .findByIdAndUpdate(
       userId,
       {
+        exam_details:{
+          testtype: testtype,
+          status: false,
+          comments: '',
+        },
         appointmentID: appointmentID
+        
       },
       { new: true } // Use the { new: true } option to return the updated document
     )
